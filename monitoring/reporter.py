@@ -1,5 +1,4 @@
 import json
-from datetime import datetime
 
 import requests
 from retrying import retry
@@ -14,10 +13,9 @@ class Reporter:
         self._headers = {
             "Authorization": config.CLIENT_TOKEN
         }
-        self.counter = 0
 
     def report_latency(self):
-        self._make_request(method='get', url_suffix='500')
+        pass
 
     def report_speed(self):
         pass
@@ -28,8 +26,6 @@ class Reporter:
         wait_fixed=5000
     )
     def _make_request(self, method: str, url_suffix: str, body=None) -> requests.Response:
-        self.counter += 1
-        print(f'{self.counter} | {datetime.now()} | {method} | {self._api_url}/{url_suffix}')
         if method == 'get':
             response = requests.get(
                 '{}/{}'.format(self._api_url, url_suffix),
@@ -50,6 +46,5 @@ class Reporter:
         else:
             raise ValueError(f'method `{method}` not implemented')
 
-        print(f'status_code: {response.status_code}')
         response.raise_for_status()
         return response
