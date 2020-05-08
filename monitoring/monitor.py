@@ -9,11 +9,13 @@ from monitoring.reporter import Reporter
 
 
 def check_latency():
-    host = "8.8.8.8"
-    latency = round(ping(host, unit='ms'), 2)
+    host = '8.8.8.8'
+    unit = 'ms'
+    latency = round(ping(host, unit=unit), 2)
     payload = {
         'host': host,
-        'latency': latency
+        'latency': latency,
+        'latency_measurement': unit
     }
     Reporter().report_latency(payload)
 

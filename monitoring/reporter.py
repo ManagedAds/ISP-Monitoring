@@ -17,11 +17,11 @@ class Reporter:
 
     def report_latency(self, payload: Dict) -> None:
         url_suffix = '01e7t9yby45168yw0t7ewtcfst'
-        self._make_request(method='post', url_suffix=url_suffix, data=payload)
+        self._make_request(method='post', url_suffix=url_suffix, body=payload)
 
     def report_speed(self, payload: Dict) -> None:
         url_suffix = '01e7tac210v87w8t7p1732z9tm'
-        self._make_request(method='post', url_suffix=url_suffix, data=payload)
+        self._make_request(method='post', url_suffix=url_suffix, body=payload)
 
     @retry(
         retry_on_exception=retry_if_5xx_or_connection_error,
