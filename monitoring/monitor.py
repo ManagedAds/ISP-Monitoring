@@ -9,16 +9,19 @@ from monitoring.reporter import Reporter
 
 
 def check_latency():
-    # host = "8.8.8.8"
-    # latency = round(ping(host, unit='ms'), 2)
-    # print(f"latency: {latency} milliseconds")
-    Reporter().report_latency()
+    host = "8.8.8.8"
+    latency = round(ping(host, unit='ms'), 2)
+    payload = {
+        'host': host,
+        'latency': latency
+    }
+    Reporter().report_latency(payload)
 
 
 def check_speed():
     speed_test_results_raw = os.popen("speedtest-cli --json").read()
-    speed_test_results_json = json.loads(speed_test_results_raw)
-    print(speed_test_results_json)
+    payload = json.loads(speed_test_results_raw)
+    Reporter().report_speed(payload)
 
 
 def schedule_isp_check():
