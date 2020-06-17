@@ -16,11 +16,11 @@ class Reporter:
         }
 
     def report_latency(self, payload: Dict) -> None:
-        url_suffix = '01e7t9yby45168yw0t7ewtcfst'
+        url_suffix = 'latency'
         self._make_request(method='post', url_suffix=url_suffix, body=payload)
 
     def report_speed(self, payload: Dict) -> None:
-        url_suffix = '01e7tac210v87w8t7p1732z9tm'
+        url_suffix = 'speed'
         self._make_request(method='post', url_suffix=url_suffix, body=payload)
 
     @retry(
